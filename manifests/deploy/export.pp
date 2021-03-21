@@ -17,7 +17,7 @@ define openvpn::deploy::export (
   -> Openvpn::Client[$name]
   -> Openvpn::Deploy::Export[$name]
 
-  if fact("openvpn.${server}.${name}") {
+  if $facts['openvpn'][$server][$name] {
     $data = $facts['openvpn'][$server][$name]
 
     @@file { "exported-${server}-${name}-config":
